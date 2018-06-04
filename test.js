@@ -1,11 +1,17 @@
-const {encrypt, decrypt, getEnvName} = require('./index')
-// const encrypt = require('encrypt-value/encrypt')
-// const decrypt = require('encrypt-value/decrypt')
-// const getEnvName = require('encrypt-value/getEnvName')
+function require(path) {
+  path = path.replace('encrypt-value', '.')
+  return process.mainModule.require(path)
+}
 
-const secret = ''+Math.random()
-const text = 'abc'
+const encrypt = require('encrypt-value/encrypt')
+const getEnvName = require('encrypt-value/getEnvName')
+const secret = process.env[getEnvName()] = 'abc123'
+const password = 'admin'
+const encryptedPassword = encrypt(password, secret)
+// -- The above code is tested only, using the CLI to encrypt.
 
-const code = encrypt(text, secret)
-console.log(text === decrypt(code, secret)) // true
-console.log(getEnvName()) // ENCRYPT_VALUE_AES
+const getDecryptedValue = require('encrypt-value/getDecryptedValue')
+const config = {
+  password: encryptedPassword
+}
+console.log(password === getDecryptedValue(config.password)) // true

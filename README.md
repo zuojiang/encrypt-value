@@ -16,20 +16,22 @@ $ npm i encrypt-value -S
 
 3. Copy the ciphertext to your project config file(e.g. `{"password": "<ciphertext>"}`).
 
-4. Get the value by `decrypt(config.password, process.env["<PROJECT>_AES" || getEnvName()])` in your project.
+4. Get the value by `getDecryptedValue(config.password [, <env_name>])` in your project.
 
 ### Node.js
 ```js
 const encrypt = require('encrypt-value/encrypt')
-const decrypt = require('encrypt-value/decrypt')
 const getEnvName = require('encrypt-value/getEnvName')
+const secret = process.env[getEnvName()] = 'abc123'
+const password = 'admin'
+const encryptedPassword = encrypt(password, secret)
+// -- The above code is tested only, using the CLI to encrypt.
 
-const secret = ''+Math.random()
-const text = 'abc'
-
-const code = encrypt(text, secret)
-console.log(text === decrypt(code, secret)) // true
-console.log(getEnvName()) // ENCRYPT_VALUE_AES
+const getDecryptedValue = require('encrypt-value/getDecryptedValue')
+const config = {
+  password: encryptedPassword
+}
+console.log(password === getDecryptedValue(config.password)) // true
 ```
 
 ### CLI

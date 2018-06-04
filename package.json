@@ -1,6 +1,6 @@
 {
   "name": "encrypt-value",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Encrypt a property value.",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zuojiang/normalize-name.git"
+    "url": "git+https://github.com/zuojiang/encrypt-value.git"
   },
   "keywords": [
     "crypto",
@@ -27,13 +27,13 @@
   "author": "zuojiang.wang@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zuojiang/normalize-name/issues"
+    "url": "https://github.com/zuojiang/encrypt-value/issues"
   },
-  "homepage": "https://github.com/zuojiang/normalize-name#readme",
+  "homepage": "https://github.com/zuojiang/encrypt-value#readme",
   "dependencies": {
     "crypto-js": "^3.1.9-1",
     "inquirer": "^5.0.1",
-    "normalize-name": "^1.0.0",
+    "encrypt-value": "^1.0.0",
     "optimist": "^0.6.1",
     "project-name": "^0.2.6"
   }
