@@ -11,7 +11,9 @@ const encryptedPassword = encrypt(password, secret)
 // -- The above code is tested only, using the CLI to encrypt.
 
 const getDecryptedValue = require('encrypt-value/getDecryptedValue')
+const decrypt = require('encrypt-value/decrypt')
 const config = {
   password: encryptedPassword
 }
 console.log(password === getDecryptedValue(config.password)) // true
+console.log(password === decrypt(config.password, secret)) // true

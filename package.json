@@ -13,6 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/zuojiang/encrypt-value.git"
   },
+  "preferGlobal": true,
   "keywords": [
     "crypto",
     "aes",

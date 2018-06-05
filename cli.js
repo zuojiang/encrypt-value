@@ -43,13 +43,13 @@ if (argv.v || argv.version) {
   console.log('');
   console.log('Options:');
   console.log('');
-  console.log('\t-N, --env-name <name>\t\tThe environment variable name with a secret key. Default: "<project_name>_AES"');
+  console.log('\t-N, --env-name <name>\tThe environment variable name with a secret key. Default: "<project_name>_AES"');
   console.log('');
-  console.log('\t-S, --enter-secret <secret>\tEnter a secret key explicitly.');
+  console.log('\t-S, --enter-secret\tEnter a secret key forcibly, not from environment variable.');
   console.log('');
-  console.log('\t-v, --version\t\t\tDisplay the version.');
+  console.log('\t-v, --version\t\tDisplay the version.');
   console.log('');
-  console.log('\t-h, --help\t\t\tPrint this help.');
+  console.log('\t-h, --help\t\tPrint this help.');
   console.log('');
 } else {
   main()

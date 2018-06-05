@@ -5,7 +5,7 @@ Encrypt a property value(e.g. password).
 
 ### Installation
 ```sh
-$ npm i encrypt-value -S
+$ npm i encrypt-value -g
 ```
 
 ### Usage
@@ -28,14 +28,20 @@ const encryptedPassword = encrypt(password, secret)
 // -- The above code is tested only, using the CLI to encrypt.
 
 const getDecryptedValue = require('encrypt-value/getDecryptedValue')
+const decrypt = require('encrypt-value/decrypt')
 const config = {
   password: encryptedPassword
 }
 console.log(password === getDecryptedValue(config.password)) // true
+console.log(password === decrypt(config.password, secret)) // true
 ```
 
 ### CLI
 ```sh
+$ env|grep _AES
+$ encrypt-value ./my_project
+$ encrypt-value -S ./my_project
+$ encrypt-value -N MY_PROJECT_AES
 $ encrypt-value -h
 ```
 
