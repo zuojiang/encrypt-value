@@ -3,6 +3,7 @@ function require(path) {
   return process.mainModule.require(path)
 }
 
+const assert = require('assert')
 const encrypt = require('encrypt-value/encrypt')
 const getEnvName = require('encrypt-value/getEnvName')
 const secret = process.env[getEnvName()] = 'abc123'
@@ -10,10 +11,13 @@ const password = 'admin'
 const encryptedPassword = encrypt(password, secret)
 // -- The above code is tested only, using the CLI to encrypt.
 
-const getDecryptedValue = require('encrypt-value/getDecryptedValue')
 const decrypt = require('encrypt-value/decrypt')
+const getDecryptedValue = require('encrypt-value/getDecryptedValue')
+const getEncryptedValue = require('encrypt-value/getEncryptedValue')
 const config = {
   password: encryptedPassword
 }
-console.log(password === getDecryptedValue(config.password)) // true
-console.log(password === decrypt(config.password, secret)) // true
+assert.ok(password === decrypt(config.password, secret))
+assert.ok(password === getDecryptedValue(config.password))
+assert.ok(password === getDecryptedValue(getEncryptedValue(password)))
+assert.ok(config.password !== getEncryptedValue(password))
