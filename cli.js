@@ -2,20 +2,43 @@
 
 var path = require('path')
 var inquirer = require('inquirer')
-var argv = require('optimist').argv
+var optimist = require('optimist')
 var getEnvName = require('./getEnvName')
 var encrypt = require('./encrypt')
 var pkg = require('./package')
 
-var projectDir = path.resolve(process.cwd(), argv._[0] || '.')
-var defaultEnvName = getEnvName(projectDir)
+var argv = optimist.usage(pkg.name+' [OPTIONS] [<package_directory>]')
+  .options('env-name', {
+    alias: 'N',
+    desc: 'The environment variable name with a secret key. Default: "<package_name>_AES"',
+  })
+  .options('secret-key', {
+    alias: 'S',
+    desc: 'Enter a secret key forcibly, not from environment variable.'
+  })
+  .options('show-env-name', {
+    alias: 'E',
+    desc: 'Show the default environment variable name for the specified package.'
+  })
+  .options('version', {
+    alias: 'v',
+    desc: 'Display the version.'
+  })
+  .options('help', {
+    alias: 'h',
+    desc: 'Print this help.'
+  })
+  .boolean(['show-env-name', 'version', 'help']).argv
+
+var packageDir = path.resolve(argv._[0] || '.')
+var defaultEnvName = getEnvName(packageDir)
 
 function main () {
   var questions = []
-  var envName= argv.N || argv['env-name'] || defaultEnvName
+  var envName= argv['env-name'] || defaultEnvName
   var secret = process.env[envName]
 
-  if (argv.S || argv['enter-secret'] || !secret) {
+  if (argv['enter-secret'] || !secret) {
     questions.push({
       name: 'secret',
       type: 'password',
@@ -35,22 +58,12 @@ function main () {
   })
 }
 
-if (argv.v || argv.version) {
+if (argv.version) {
   console.log(pkg.version);
-} else if (argv.h || argv.help) {
-  console.log('');
-  console.log('Usage: '+pkg.name+' [OPTIONS] [<project_directory>]');
-  console.log('');
-  console.log('Options:');
-  console.log('');
-  console.log('\t-N, --env-name <name>\tThe environment variable name with a secret key. Default: "<project_name>_AES"');
-  console.log('');
-  console.log('\t-S, --enter-secret\tEnter a secret key forcibly, not from environment variable.');
-  console.log('');
-  console.log('\t-v, --version\t\tDisplay the version.');
-  console.log('');
-  console.log('\t-h, --help\t\tPrint this help.');
-  console.log('');
+} else if (argv['show-env-name']) {
+  console.log(defaultEnvName)
+} else if (argv.help) {
+  optimist.showHelp()
 } else {
   main()
 }

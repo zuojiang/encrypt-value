@@ -1,6 +1,6 @@
 var getEnvName = require('./getEnvName')
 var encrypt = require('./encrypt')
 
-module.exports = function(code, envName) {
-  return encrypt(code, process.env[envName || getEnvName()])
+module.exports = function(value, envName) {
+  return encrypt(value, process.env[envName || getEnvName()])
 }

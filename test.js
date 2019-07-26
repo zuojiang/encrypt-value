@@ -6,7 +6,7 @@ function require(path) {
 const assert = require('assert')
 const encrypt = require('encrypt-value/encrypt')
 const getEnvName = require('encrypt-value/getEnvName')
-const secret = process.env[getEnvName()] = 'abc123'
+const secret = process.env[getEnvName()] = 'xxxxxx'
 const password = 'admin'
 const encryptedPassword = encrypt(password, secret)
 // -- The above code is tested only, using the CLI to encrypt.

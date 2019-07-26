@@ -1,7 +1,7 @@
 {
   "name": "encrypt-value",
-  "version": "1.1.0",
-  "description": "Encrypt a property value.",
+  "version": "2.0.0",
+  "description": "Encrypt and decrypt a property value.",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"
@@ -36,6 +36,6 @@
     "inquirer": "^5.0.1",
     "normalize-name": "^1.0.1",
     "optimist": "^0.6.1",
-    "project-name": "^0.2.6"
+    "read-pkg-up": "^6.0.0"
   }
 }
