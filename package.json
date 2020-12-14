@@ -1,6 +1,6 @@
 {
   "name": "encrypt-value",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Encrypt and decrypt a property value.",
   "main": "index.js",
   "scripts": {
